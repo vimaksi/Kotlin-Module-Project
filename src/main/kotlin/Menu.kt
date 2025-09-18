@@ -1,4 +1,4 @@
-class Menu(private val menuList: MutableList<Pair<String, () -> Unit>>) {
+class Menu(private var menuList: List<Pair<String, () -> Unit>>) {
     fun print() {
         var shouldContinue = true
 

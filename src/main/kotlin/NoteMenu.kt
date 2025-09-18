@@ -1,18 +1,19 @@
 class NoteMenu(private var archive: Archive) {
     fun show() {
-        var menu = mutableListOf<Pair<String, () -> Unit>>()
-        menu.add("Создать заметку." to {
-            create()
-            show()
-        })
-
-        archive.noteList.forEachIndexed { index, note ->
-            menu.add(note.name to {
-                NoteView(note).show()
+        val menu = buildList<Pair<String, () -> Unit>>() {
+            add("Создать заметку." to {
+                create()
                 show()
             })
+
+            archive.noteList.forEachIndexed { index, note ->
+                add(note.name to {
+                    NoteView(note).show()
+                    show()
+                })
+            }
+            add("Выход" to {})
         }
-        menu.add("Выход" to {} )
         Menu(menu).print()
     }
 
